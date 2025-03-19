@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  ToMyDad
-//
-//  Created by Arda Çakmak on 14.03.2025.
-//
-
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -14,16 +7,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loaddata()
         tableView.reloadData()
     }
     
     func loaddata(){
-        
         images = DatabaseHelper.shareInstance.fetchImages()
     }
     
@@ -41,15 +34,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let data = row.image {
             cell.img.image = UIImage(data: data)
-        }
-        else {
+        } else {
             cell.img.image = nil
         }
         
         return cell
     }
-    
-
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
@@ -63,6 +53,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
 }
-
-
 
